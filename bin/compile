@@ -64,6 +64,8 @@ case "$APT_VERSION" in
   *)         APT_FORCE_YES=("--allow-downgrades" "--allow-remove-essential" "--allow-change-held-packages");;
 esac
 
+apt-key add "$BUILD_DIR/trusted.gpg"
+
 if [[ -f "$APT_CACHE_DIR/Aptfile" ]] && cmp -s "$BUILD_DIR/Aptfile" "$APT_CACHE_DIR/Aptfile" && [[ "$CACHED_STACK" == "$STACK" ]] ; then
   # Old Aptfile is the same as new and STACK has not changed
   topic "Reusing cache"
