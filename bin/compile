@@ -64,7 +64,7 @@ case "$APT_VERSION" in
   *)         APT_FORCE_YES=("--allow-downgrades" "--allow-remove-essential" "--allow-change-held-packages");;
 esac
 
-apt-key add "$BUILD_DIR/trusted.gpg"
+# apt-key add "$BUILD_DIR/trusted.gpg"
 
 if [[ -f "$APT_CACHE_DIR/Aptfile" ]] && cmp -s "$BUILD_DIR/Aptfile" "$APT_CACHE_DIR/Aptfile" && [[ "$CACHED_STACK" == "$STACK" ]] ; then
   # Old Aptfile is the same as new and STACK has not changed
@@ -99,6 +99,8 @@ while IFS= read -r PACKAGE; do
     PACKAGE_NAME=$(basename "$PACKAGE" .deb)
     PACKAGE_FILE=$APT_CACHE_DIR/archives/$PACKAGE_NAME.deb
 
+    echo "Azure----------------------"
+    echo "curl --silent --show-error --fail -L -z "$PACKAGE_FILE" -o "$PACKAGE_FILE" "$PACKAGE" 2>&1 | indent"
     topic "Fetching $PACKAGE"
     curl --silent --show-error --fail -L -z "$PACKAGE_FILE" -o "$PACKAGE_FILE" "$PACKAGE" 2>&1 | indent
   else
@@ -108,6 +110,8 @@ while IFS= read -r PACKAGE; do
     # on a single line due to how the download command was implemented so we
     # should respect that behavior since users are doing this
     IFS=$' \t' read -ra PACKAGE_NAMES <<< "$PACKAGE"
+    echo "Azure----------------------"
+    echo "apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install --reinstall "${PACKAGE_NAMES[@]}" | indent"
     apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install --reinstall "${PACKAGE_NAMES[@]}" | indent
   fi
 done < <(grep --invert-match -e "^\s*#" -e "^\s*$" -e "^:repo:" "${BUILD_DIR}/Aptfile")
