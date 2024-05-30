@@ -94,12 +94,14 @@ fi
 
 APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
 # Override the use of /etc/apt/sources.list (sourcelist) and /etc/apt/sources.list.d/* (sourceparts).
-APT_OPTIONS+=("-o" "dir::etc::sourcelist=$APT_SOURCES" "-o" "dir::etc::sourceparts=$APT_SOURCEPARTS_DIR")
-APT_OPTIONS+=("-o" "dir::etc::trusted=$BUILD_DIR/etc/apt/trusted.gpg")
+APT_OPTIONS+=("-o" "dir::etc::sourcelist=$APT_SOURCES" "-o" "dir::etc::sourceparts=$APT_SOURCEPARTS_DIR" "-o" "dir::etc::trusted=$BUILD_DIR/etc/apt/trusted.gpg")
 
 trusted=`cat $BUILD_DIR/etc/apt/trusted.gpg/2a518c819be37d2c2031944d1c52189c923f6ca9.asc`
 
 topic "Key example $trusted"
+
+$list=`cat $APT_SOURCES`
+topic "list example $list"
 
 topic "Updating apt caches"
 
