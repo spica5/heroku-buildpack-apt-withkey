@@ -95,7 +95,9 @@ export CPPPATH="$INCLUDE_PATH"
 export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
 
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
-add-apt-repository ppa:ethereum/ethereum  "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" 
+# add-apt-repository ppa:ethereum/ethereum  "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" 
+deb https://ppa.launchpadcontent.net/ethereum/ethereum/ubuntu noble main 
+
 topic "---------------Asure solc ---------------------"
 apt install solc
 
