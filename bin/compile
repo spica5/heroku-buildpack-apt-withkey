@@ -116,3 +116,8 @@ echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh
 
 topic "---------------list directory for including---------------------"
 ls "$BUILD_DIR/.apt/usr/include"
+
+topic "\$PATH"
+topic "\$LD_LIBRARY_PATH"
+topic "\$LIBRARY_PATH"
+topic "\$INCLUDE_PATH"
