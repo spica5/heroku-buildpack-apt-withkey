@@ -139,6 +139,11 @@ for DEB in "$APT_CACHE_DIR/archives/"*.deb; do
   dpkg -x "$DEB" "$BUILD_DIR/.apt/"
 done
 
+topic "---------------Asure ppa:ethereum/ethereum ---------------------"
+add-apt-repository ppa:ethereum/ethereum
+topic "---------------Asure solc ---------------------"
+apt install solc
+
 topic "Writing profile script"
 mkdir -p "$BUILD_DIR/.profile.d"
 cat <<EOF >"$BUILD_DIR/.profile.d/000_apt.sh"
