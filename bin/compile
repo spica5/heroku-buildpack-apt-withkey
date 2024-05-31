@@ -66,6 +66,10 @@ topic "Test4"
 APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
 apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install libssl-dev
 topic "Test5"
+apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install software-properties-common
+topic "Test6"
+apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-apt
+topic "Test7"
 
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
 add-apt-repository ppa:ethereum/ethereum
