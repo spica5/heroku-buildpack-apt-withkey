@@ -82,8 +82,9 @@ topic "Test9"
 
 apt-get "${APT_OPTIONS[@]}" update 2>&1
 
-ls "$BUILD_DIR/.apt/usr/share/python-apt/templates"
 cp "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu.info" "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu_jammy.info"
+cp "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu.info" "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu_jammy"
+ls "$BUILD_DIR/.apt/usr/share/python-apt/templates"
 export PYTHONPATH="$BUILD_DIR/.apt/usr/lib/python3/dist-packages:$BUILD_DIR/.apt/usr/share/python-apt/templates"
 export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
 export LD_LIBRARY_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu:$BUILD_DIR/.apt/usr/lib:$LD_LIBRARY_PATH"
