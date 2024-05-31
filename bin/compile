@@ -47,7 +47,7 @@ else
 fi
 
 # Ensure we store the STACK in the cache for next time.
-mkdir -p "$CACHE_DIR/.apt"
+# mkdir -p "$CACHE_DIR/.apt"
 echo "$STACK" > "$CACHE_DIR/.apt/STACK"
 
 APT_CACHE_DIR="$CACHE_DIR/apt/cache"
@@ -67,37 +67,46 @@ APT_VERSION=$(apt-get -v | awk 'NR == 1{ print $2 }')
 
 
 topic "Test4"
-APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
-apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install libssl-dev
-topic "Test5"
-apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install software-properties-common
-topic "Test6"
-apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-dev
-topic "Test7"
-apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-pip
-topic "Test8"
-apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-apt
-topic "Test9"
+# APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
+# apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install libssl-dev
+# topic "Test5"
+# apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install software-properties-common
+# topic "Test6"
+# apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-dev
+# topic "Test7"
+# apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-pip
+# topic "Test8"
+# apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-apt
+# topic "Test9"
 
 
-apt-get "${APT_OPTIONS[@]}" update 2>&1
+# apt-get "${APT_OPTIONS[@]}" update 2>&1
 
-cp "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu.info" "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu_jammy.info"
-cp "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu.info" "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu_jammy"
-ls "$BUILD_DIR/.apt/usr/share/python-apt/templates"
-export PYTHONPATH="$BUILD_DIR/.apt/usr/lib/python3/dist-packages:$BUILD_DIR/.apt/usr/share/python-apt/templates"
-export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
-export LD_LIBRARY_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu:$BUILD_DIR/.apt/usr/lib:$LD_LIBRARY_PATH"
-export LIBRARY_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu:$BUILD_DIR/.apt/usr/lib:$LIBRARY_PATH"
-export INCLUDE_PATH="$BUILD_DIR/.apt/usr/include:$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu:$INCLUDE_PATH"
-export CPATH="$INCLUDE_PATH"
-export CPPPATH="$INCLUDE_PATH"
-export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
+# cp "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu.info" "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu_jammy.info"
+# cp "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu.info" "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu_jammy"
+# ls "$BUILD_DIR/.apt/usr/share/python-apt/templates"
+# export PYTHONPATH="$BUILD_DIR/.apt/usr/lib/python3/dist-packages:$BUILD_DIR/.apt/usr/share/python-apt/templates"
+# export PATH="$BUILD_DIR/.apt/usr/bin:$PATH"
+# export LD_LIBRARY_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu:$BUILD_DIR/.apt/usr/lib:$LD_LIBRARY_PATH"
+# export LIBRARY_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu:$BUILD_DIR/.apt/usr/lib:$LIBRARY_PATH"
+# export INCLUDE_PATH="$BUILD_DIR/.apt/usr/include:$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu:$INCLUDE_PATH"
+# export CPATH="$INCLUDE_PATH"
+# export CPPPATH="$INCLUDE_PATH"
+# export PKG_CONFIG_PATH="$BUILD_DIR/.apt/usr/lib/x86_64-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/i386-linux-gnu/pkgconfig:$BUILD_DIR/.apt/usr/lib/pkgconfig:$PKG_CONFIG_PATH"
 
-topic "---------------Asure ppa:ethereum/ethereum ---------------------"
+# topic "---------------Asure ppa:ethereum/ethereum ---------------------"
 # add-apt-repository ppa:ethereum/ethereum  "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" 
-deb https://ppa.launchpadcontent.net/ethereum/ethereum/ubuntu noble main 
+# deb https://ppa.launchpadcontent.net/ethereum/ethereum/ubuntu noble main 
 
 topic "---------------Asure solc ---------------------"
-apt install solc
+# apt install solc
 
+SOLC_VERSION=0.8.6
+SOLC_BIN_DIR=$BUILD_DIR/.heroku/solc/bin
+
+mkdir -p $SOLC_BIN_DIR
+curl -L https://github.com/ethereum/solidity/releases/download/v$SOLC_VERSION/solc-static-linux -o $SOLC_BIN_DIR/solc
+chmod +x $SOLC_BIN_DIR/solc
+
+# Add solc to the PATH
+echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh' > compile
