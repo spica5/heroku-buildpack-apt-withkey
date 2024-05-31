@@ -66,7 +66,7 @@ topic "Test4"
 
 APT_OPTION2=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
-add-apt-repository ppa:ethereum/ethereum "$APT_OPTION2"
+add-apt-repository ppa:ethereum/ethereum
 topic "---------------Asure solc ---------------------"
 apt install solc
 
