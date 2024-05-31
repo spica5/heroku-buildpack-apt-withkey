@@ -113,4 +113,6 @@ topic "---------------Add solc to the PATH---------------------"
 # echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh' > compile
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh
+
+topic "---------------list directory for including---------------------"
 ls "$BUILD_DIR/.apt/usr/include"
