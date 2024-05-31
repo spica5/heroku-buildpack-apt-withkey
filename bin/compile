@@ -108,5 +108,8 @@ mkdir -p $SOLC_BIN_DIR
 curl -L https://github.com/ethereum/solidity/releases/download/v$SOLC_VERSION/solc-static-linux -o $SOLC_BIN_DIR/solc
 chmod +x $SOLC_BIN_DIR/solc
 
+topic "---------------Add solc to the PATH---------------------"
 # Add solc to the PATH
-echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh' > compile
+# echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh' > compile
+mkdir -p $BUILD_DIR/.profile.d
+echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh
