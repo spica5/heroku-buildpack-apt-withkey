@@ -100,8 +100,6 @@ trusted=`cat $BUILD_DIR/etc/apt/trusted.gpg/2a518c819be37d2c2031944d1c52189c923f
 
 topic "Key example $trusted"
 
-$list=`cat $APT_SOURCES`
-topic "list example $list"
 
 topic "Updating apt caches"
 
