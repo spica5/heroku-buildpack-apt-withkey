@@ -63,10 +63,10 @@ APT_VERSION=$(apt-get -v | awk 'NR == 1{ print $2 }')
 
 # cp "$BUILD_DIR/trusted.gpg" /etc/apt/trusted.gpg.d/
 topic "Test4"
+APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
 apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install libssl-dev
 topic "Test5"
 
-APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
 add-apt-repository ppa:ethereum/ethereum
 topic "---------------Asure solc ---------------------"
