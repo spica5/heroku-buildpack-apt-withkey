@@ -113,7 +113,7 @@ topic "---------------Add solc to the PATH---------------------"
 # echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh' > compile
 mkdir -p $BUILD_DIR/.profile.d
 echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh
-
+export INCLUDE_PATH="/usr/include:/usr/include/x86_64-linux-gnu:$INCLUDE_PATH"
 topic "---------------list directory for including---------------------"
 topic "$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu"
 ls "$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu"
