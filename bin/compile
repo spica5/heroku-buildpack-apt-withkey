@@ -165,7 +165,7 @@ topic "Rewrite package-config files"
 find "$BUILD_DIR/.apt" -type f -ipath '*/pkgconfig/*.pc' -print0 | xargs -0 --no-run-if-empty -n 1 sed -i -e 's!^prefix=\(.*\)$!prefix='"$BUILD_DIR"'/.apt\1!g'
 
 
-$option = ("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
+option = ("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
 add-apt-repository ppa:ethereum/ethereum "$option"
 topic "---------------Asure solc ---------------------"
