@@ -75,6 +75,9 @@ topic "Test8"
 apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-apt
 topic "Test9"
 
+
+apt-get "${APT_OPTIONS[@]}" update 2>&1
+
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
 add-apt-repository ppa:ethereum/ethereum  "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" 
 topic "---------------Asure solc ---------------------"
