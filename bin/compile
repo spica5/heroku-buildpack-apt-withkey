@@ -62,6 +62,10 @@ APT_VERSION=$(apt-get -v | awk 'NR == 1{ print $2 }')
 # apt-key add "$BUILD_DIR/trusted.gpg"
 
 # cp "$BUILD_DIR/trusted.gpg" /etc/apt/trusted.gpg.d/
+# python3 -c "import apt_pkg; print('apt_pkg installed successfully')"
+
+
+
 topic "Test4"
 APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
 apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install libssl-dev
@@ -77,6 +81,8 @@ topic "Test9"
 
 
 apt-get "${APT_OPTIONS[@]}" update 2>&1
+ls "$BUILD_DIR/.apt/usr/lib/python3/dist-packages"
+export PYTHONPATH="$BUILD_DIR/.apt/usr/lib/python3/dist-packages"
 
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
 add-apt-repository ppa:ethereum/ethereum  "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" 
