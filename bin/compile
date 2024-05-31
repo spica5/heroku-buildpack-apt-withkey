@@ -68,8 +68,12 @@ apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install libssl-dev
 topic "Test5"
 apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install software-properties-common
 topic "Test6"
-apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-apt
+apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-dev
 topic "Test7"
+apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-pip
+topic "Test8"
+apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-apt
+topic "Test9"
 
 topic "---------------Asure ppa:ethereum/ethereum ---------------------"
 add-apt-repository ppa:ethereum/ethereum
