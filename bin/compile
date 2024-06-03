@@ -101,7 +101,7 @@ topic "Test4"
 topic "---------------Asure solc ---------------------"
 # apt install solc
 
-SOLC_VERSION=0.8.6
+SOLC_VERSION=0.8.26
 SOLC_BIN_DIR=$BUILD_DIR/.heroku/solc/bin
 
 mkdir -p $SOLC_BIN_DIR
