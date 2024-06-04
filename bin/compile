@@ -78,11 +78,8 @@ topic "Test4"
 # topic "Test8"
 # apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install python3-apt
 # topic "Test9"
-topic "Test10"
-APT_OPTIONS=("-o" "debug::nolocking=true" "-o" "dir::cache=$APT_CACHE_DIR" "-o" "dir::state=$APT_STATE_DIR")
-add-apt-repository ppa:ethereum/ethereum
-topic "Test11"
-apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install solc
+
+
 # apt-get "${APT_OPTIONS[@]}" update 2>&1
 
 # cp "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu.info" "$BUILD_DIR/.apt/usr/share/python-apt/templates/Ubuntu_jammy.info"
@@ -104,22 +101,22 @@ apt-get "${APT_OPTIONS[@]}" -y "${APT_FORCE_YES[@]}" -d install solc
 topic "---------------Asure solc ---------------------"
 # apt install solc
 
-# SOLC_VERSION=0.8.26
-# SOLC_BIN_DIR=$BUILD_DIR/.heroku/solc/bin
+SOLC_VERSION=0.8.26
+SOLC_BIN_DIR=$BUILD_DIR/.heroku/solc/bin
 
-# mkdir -p $SOLC_BIN_DIR
-# curl -L https://github.com/ethereum/solidity/releases/download/v$SOLC_VERSION/solc-static-linux -o $SOLC_BIN_DIR/solc
-# chmod +x $SOLC_BIN_DIR/solc
+mkdir -p $SOLC_BIN_DIR
+curl -L https://github.com/ethereum/solidity/releases/download/v$SOLC_VERSION/solc-static-linux -o $SOLC_BIN_DIR/solc
+chmod +x $SOLC_BIN_DIR/solc
 
-# topic "---------------Add solc to the PATH---------------------"
-# # Add solc to the PATH
-# # echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh' > compile
-# mkdir -p $BUILD_DIR/.profile.d
-# echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh
-# export INCLUDE_PATH="/usr/include:/usr/include/x86_64-linux-gnu:$INCLUDE_PATH"
-# topic "---------------list directory for including---------------------"
-# topic "$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu"
-# ls "$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu"
+topic "---------------Add solc to the PATH---------------------"
+# Add solc to the PATH
+# echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh' > compile
+mkdir -p $BUILD_DIR/.profile.d
+echo "export PATH=\$PATH:$SOLC_BIN_DIR" > $BUILD_DIR/.profile.d/solc.sh
+export INCLUDE_PATH="/usr/include:/usr/include/x86_64-linux-gnu:$INCLUDE_PATH"
+topic "---------------list directory for including---------------------"
+topic "$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu"
+ls "$BUILD_DIR/.apt/usr/include/x86_64-linux-gnu"
 
 topic $PATH
 topic $LD_LIBRARY_PATH
